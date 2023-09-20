@@ -61,10 +61,10 @@
                 Console.ReadLine();
                 Console.Clear();
 
+                // Flera bitar av denna kod-hög kan bli metod
                 draw = random.Next(1, 1001);
                 Console.WriteLine($"Första dragningen: {draw}"); //INFOGA RULL-SLUMP
                 message = sorry[random.Next(0, greeting.Length)];
-
                 for (int i = 0; i < 3; i++)
                 {
                     if (draw == userNumber[i])
@@ -72,9 +72,9 @@
                         message = $"JACKPOTT!! På denna siffra vinner du {bet[i] * 100} kr!\n";
                         money += bet[i] * 100;
                     }
-                    else if (draw < userNumber[i] + 11 && draw > userNumber[i] - 11)
+                    else if (draw < userNumber[i] + 11 && draw > userNumber[i] - 11) // Men om fler av ens tre nummer ligger inom spannet..?
                     {
-                        message = $"Grattis! Ditt nummer {userNumber[i]} var bara 10 ifrån det dragna nummret! Du vinner {bet[i] * 10} kr!\n";
+                        message = $"Grattis! Ditt nummer nr{i}, '{userNumber[i]}' var bara 10 ifrån det dragna nummret! Du vinner {bet[i] * 10} kr!\n";
                         money += bet[i] * 10;
                     }
                     else if (draw < userNumber[i] + 51 && draw > userNumber[i] - 51)
@@ -83,16 +83,16 @@
                         money += bet[i] * 2;
                     }
                 }
-
-
                 Console.WriteLine(message);
                 Console.ReadLine();
+
+
+
 
 
                 draw = random.Next(1, 1001);
                 Console.WriteLine($"Andra dragningen: {draw}"); //INFOGA RULL-SLUMP
                 message = sorry[random.Next(0, greeting.Length)];
-
                 for (int i = 0; i < 3; i++)
                 {
                     if (draw == userNumber[i])
@@ -111,15 +111,16 @@
                         money += bet[i] * 2;
                     }
                 }
-
                 Console.WriteLine(message);
                 Console.ReadLine();
+
+
+
 
 
                 draw = random.Next(1, 1001);
                 Console.WriteLine($"Tredje dragningen: {draw}"); //INFOGA RULL-SLUMP
                 message = sorry[random.Next(0, greeting.Length)];
-
                 for (int i = 0; i < 3; i++)
                 {
                     if (draw == userNumber[i])
@@ -138,9 +139,12 @@
                         money += bet[i] * 2;
                     }
                 }
-
                 Console.WriteLine(message);
                 Console.ReadLine();
+
+
+
+
 
                 while (true)
                 {
@@ -151,30 +155,8 @@
                     else if (anwser == "N")
                         break;
                     else
-                        Console.WriteLine("Du måste skriva 'Y' eller 'N' för att komma vidare\n");
+                        Console.WriteLine("Du måste skriva 'J' eller 'N' för att komma vidare\n");
                 }
-            }
-        }
-        public static void Win(int draw, int[] userNumber, int money)
-        {
-            string[] sorry = new string[5] { "Tyvärr ingen vinst på den dragningen.", "Miss! Hoppas på bättre tur nästa dragning!", "Inte denna gången, men kanske nästa.", "Ledsen, ingen vinst!", "Otur! Men nu måste du ha spenderat all otur, så nu har du nog bara tur kvar. Spela lite till!" };
-            Random random = new Random();
-
-            if (draw == userNumber[0] || draw == userNumber[1] || draw == userNumber[2])
-            {
-                
-                Console.WriteLine($"Grattis! Du vann jackpotten!! På denna siffra vinner du \n");
-                money = money * 100;
-            }
-            else if ((draw+10 <= userNumber[0] && draw - 10 <= userNumber[0]) || (draw + 10 <= userNumber[1] || draw - 10 <= userNumber[1]) || (draw + 10 <= userNumber[2] || draw - 10 <= userNumber[2]))
-            {
-                Console.WriteLine("Grattis! Ditt nummer var bara 10 ifrån det dragna nummret! Du får 1000 kr!\n");
-                money += 1000;
-            }
-            else
-            {
-                draw = random.Next(0, 5);
-                Console.WriteLine(sorry[draw]+ "\n");
             }
         }
     }
